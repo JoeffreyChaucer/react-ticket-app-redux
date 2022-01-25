@@ -9,12 +9,7 @@
     "origin-ordered-imports": [true, "one-blank-line"],
     "object-literal-sort-keys": false,
     "max-classes-per-file": false,
-    "variable-name": [
-      true,
-      "ban-keywords",
-      "check-format",
-      "allow-leading-underscore"
-    ],
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
     "no-shadowed-variable": true,
     "curly": [true, "ignore-same-line"],
     "no-console": false,
