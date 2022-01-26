@@ -18,6 +18,7 @@ export function registerRoutes() {
   router.post('/tickets/add', verifyToken, Ticket.prototype.addTicket);
   router.put('/tickets/:id', verifyToken, Ticket.prototype.editTicket);
   router.delete('/tickets/:_id', verifyToken, Ticket.prototype.deleteTicket);
+  router.put('/tickets/mark-ticket/:id', verifyToken, Ticket.prototype.closeTicket);
 
   return router;
 }
