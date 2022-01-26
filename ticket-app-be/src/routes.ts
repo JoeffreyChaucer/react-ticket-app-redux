@@ -16,6 +16,6 @@ export function registerRoutes() {
   // Ticket routes
   router.get('/tickets', verifyToken, Ticket.prototype.getAllTickets);
   router.post('/tickets/add', verifyToken, Ticket.prototype.addTicket);
-
+  router.put('/tickets/:id', verifyToken, Ticket.prototype.editTicket);
   return router;
 }

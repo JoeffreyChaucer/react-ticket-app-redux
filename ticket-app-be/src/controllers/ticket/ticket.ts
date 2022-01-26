@@ -62,4 +62,42 @@ export class Ticket {
       ctx.body = error;
     }
   }
+
+  public async editTicket(ctx: Context): Promise<void> {
+    try {
+      const body: ITicket = ctx.request.body;
+      //Get the id
+      const { id } = ctx.params;
+      //Validate ticketSchema optional properties
+      const schema = Joi.object().keys({
+        fullName: Joi.string().optional(),
+        email: Joi.string().optional(),
+        subject: Joi.string().optional(),
+        description: Joi.string().optional(),
+        department: Joi.string().optional(),
+        priority: Joi.string().optional(),
+      });
+      const value: ITicket = await schema.validateAsync(body);
+      // Update ticket
+      await TicketModel.updateOne(
+        // Find the ticket using mongoDb auto generated _id
+        {
+          _id: id,
+        },
+        // Values to be updated
+        {
+          fullName: value.fullName,
+          email: value.email,
+          subject: value.subject,
+          description: value.subject,
+          department: value.department,
+          priority: value.priority,
+        }
+      );
+
+      ctx.body = { message: 'Ticket updated successfully' };
+    } catch (error) {
+      ctx.body = error;
+    }
+  }
 }
