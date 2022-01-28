@@ -1,6 +1,8 @@
 import React from 'react';
 import './Auth.css';
 import { FormInput } from '../reusable/FormInput';
+import Button from '../reusable/Button';
+import { Link } from 'react-router-dom';
 
 const Register = () => {
   const onChange = (e) => {
@@ -34,6 +36,16 @@ const Register = () => {
               error=''
               onChange={onChange}
             />
+          </div>
+          <div className='mb3'>
+            <Button
+              type='submit'
+              label='sign up'
+              className='btn btn-primary w-100'
+            />
+            <p className='forgot-password text-right'>
+              Already registered? <Link to='/sign-in'>Sign in</Link>
+            </p>
           </div>
         </form>
       </div>
