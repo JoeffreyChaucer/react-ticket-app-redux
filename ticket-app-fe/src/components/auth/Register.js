@@ -4,6 +4,7 @@ import { FormInput } from '../reusable/FormInput';
 import Button from '../reusable/Button';
 import { Link } from 'react-router-dom';
 import { RadioInput } from '../reusable/RadioInput';
+import { validateInput } from '../../helpers/helpers';
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -17,13 +18,16 @@ const Register = () => {
   });
   //eslint-disable-next-line
   const { username, password, role } = user.data;
-  //eslint-disable-next-line
   const { usernameError, passwordError, roleError } = error;
 
   const onSubmitRegister = (e) => {
     e.preventDefault();
 
-    console.log(user);
+    const isValid = validateInput(user.data, setError);
+
+    if (isValid) {
+      console.log(user.data);
+    }
   };
 
   const onChange = (e) => {
@@ -51,7 +55,7 @@ const Register = () => {
               className='form-control'
               placeholder='Enter Username'
               value={username}
-              error=''
+              error={usernameError}
               onChange={onChange}
             />
           </div>
@@ -63,7 +67,7 @@ const Register = () => {
               className='form-control'
               placeholder='Enter password'
               value={password}
-              error=''
+              error={passwordError}
               onChange={onChange}
             />
           </div>
